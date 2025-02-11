@@ -9,16 +9,16 @@ form {
 		padding: 10px;
 		border: 1px solid #ccc;
 		border-radius: 5px;
-		background-color: #ddd;
 		font-size: 1em;
 	}
 
 	& button {
-		padding: 10px;
+		padding: 12px;
 		border-radius: 5px;
-		border: 2px solid #07c;
+		border: 0;
 		background-color: #06b;
 		color: white;
+		box-shadow: 1px 1px 2px #0006;
 		cursor: pointer;
 		font-size: 1.1em;
 
@@ -35,11 +35,11 @@ p.shortened-url-card {
 	max-width: 90%;
 	margin: auto;
 	margin-top: 2.5rem;
-	padding: 1.25rem;
+	padding: 0.5rem;
 	border: 1px solid #ccc;
 	border-radius: 5px;
-	background-color: #000;
-	font-size: 1.25em;
+	background-color: #0009;
+	font-size: 1em;
 
 	& a {
 		color: #49f;
