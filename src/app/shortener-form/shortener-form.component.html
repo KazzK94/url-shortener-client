@@ -1,7 +1,7 @@
 
 <form (ngSubmit)="shortenUrl(url.value)">
 	<input #url type="text" name="longUrl" placeholder="Type your URL here..." required>
-	<button type="submit">Click here to shorten URL</button>
+	<button type="submit">Shorten URL</button>
 </form>
 
 <p *ngIf="shortUrl" class="shortened-url-card">

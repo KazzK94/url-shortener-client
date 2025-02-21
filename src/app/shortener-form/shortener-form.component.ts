@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core'
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
 
 @Component({
@@ -29,11 +29,15 @@ export class ShortenerFormComponent {
 			.then(response => response.json())
 			.then(data => {
 				console.log('Response:', data)
-				this.shortUrl = data.shortUrl
+				if(data.error) {
+					this.shortUrl = `Error: ${data.error}`
+				} else {
+					this.shortUrl = `https://url-shortener-yhpv.onrender.com/${data.shortKey}`
+				}
 			})
 			.catch(error => {
 				console.error('Error:', error)
-				this.shortUrl = 'Error'
+				this.shortUrl = 'There was an error shortening the URL'
 			})
 	}
 }

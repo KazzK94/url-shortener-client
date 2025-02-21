@@ -1,28 +1,23 @@
-
-main {
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
 header {
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	row-gap: 8px;
+	margin-top: 3rem;
 	margin-bottom: 2rem;
-
-	& * {
-		margin: 0;
-	}
+	text-align: center;
 
 	& h1 {
-		font-size: 2.5rem;
-	}
+		display: flex;
+		flex-direction: column;
+		gap: 0.125rem;
+		font-size: 3rem;
 
-	& p {
-		font-size: 1.2rem;
+		& :first-child {
+			margin-top: 0;
+			color: black;
+		}
+
+		& :last-child {
+			color: #06d;
+		}
 	}
 }
+
+/* text-5xl font-bold text-gray-900 mb-6 */

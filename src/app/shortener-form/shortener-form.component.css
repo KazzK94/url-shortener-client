@@ -1,22 +1,30 @@
 form {
 	display: flex;
-	flex-direction: column;
+	gap: 1rem;
 	min-width: 30rem;
 
+	padding: 1rem 1.5rem;
+	border-radius: 16px;
+	background-color: white;
+	box-shadow: 4px 4px 8px #4442;
+
 	& input {
-		text-align: center;
-		margin-bottom: 10px;
+		flex-grow: 1;
 		padding: 10px;
 		border: 1px solid #ccc;
 		border-radius: 5px;
 		font-size: 1em;
+
+		&::placeholder {
+			color: #aaa;
+		}
 	}
 
 	& button {
 		padding: 12px;
 		border-radius: 5px;
 		border: 0;
-		background-color: #06b;
+		background-color: #27e;
 		color: white;
 		box-shadow: 1px 1px 2px #0006;
 		cursor: pointer;
@@ -35,10 +43,10 @@ p.shortened-url-card {
 	max-width: 90%;
 	margin: auto;
 	margin-top: 2.5rem;
-	padding: 0.5rem;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	background-color: #0009;
+	padding: 1rem 0.5rem;
+	border-radius: 8px;
+	box-shadow: 1px 1px 4px #0004;
+	background-color: #eeea;
 	font-size: 1em;
 
 	& a {
