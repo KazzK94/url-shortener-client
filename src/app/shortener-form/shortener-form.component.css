@@ -1,12 +1,14 @@
-form {
-	display: flex;
-	gap: 1rem;
-	min-width: 30rem;
 
+.card {
 	padding: 1rem 1.5rem;
 	border-radius: 16px;
 	background-color: white;
-	box-shadow: 4px 4px 8px #4442;
+	box-shadow: 4px 4px 8px #4442; 
+}
+
+form {
+	display: flex;
+	gap: 1rem;
 
 	& input {
 		flex-grow: 1;
@@ -36,20 +38,26 @@ form {
 	}
 }
 
-p.shortened-url-card {
+.shortened-url-card {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	max-width: 90%;
-	margin: auto;
-	margin-top: 2.5rem;
+	margin-top: 1rem;
 	padding: 1rem 0.5rem;
 	border-radius: 8px;
 	box-shadow: 1px 1px 4px #0004;
-	background-color: #eeea;
+	background-color: #bfc9;
 	font-size: 1em;
 
 	& a {
+		font-size: 1.125rem;
 		color: #49f;
+	}
+}
+
+
+@media (width < 640px) {
+	form {
+		flex-direction: column;
 	}
 }

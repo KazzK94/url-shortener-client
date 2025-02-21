@@ -2,6 +2,7 @@
 import { Component } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule } from '@angular/forms'
+import { SHORTENER_URL_BASE } from '../../data/shortener'
 
 @Component({
 	selector: 'app-shortener-form',
@@ -15,11 +16,11 @@ export class ShortenerFormComponent {
 
 	constructor() {
 		// Wake up the service
-		fetch('https://url-shortener-yhpv.onrender.com/')
+		fetch(SHORTENER_URL_BASE)
 	}
 
 	shortenUrl(url: string) {
-		fetch('https://url-shortener-yhpv.onrender.com/shorten', {
+		fetch(`${SHORTENER_URL_BASE}/shorten`, {
 			method: 'POST',
 			body: JSON.stringify({ url: url }),
 			headers: {
@@ -32,7 +33,7 @@ export class ShortenerFormComponent {
 				if(data.error) {
 					this.shortUrl = `Error: ${data.error}`
 				} else {
-					this.shortUrl = `https://url-shortener-yhpv.onrender.com/${data.shortKey}`
+					this.shortUrl = `${window.location.origin}/${data.shortKey}`
 				}
 			})
 			.catch(error => {

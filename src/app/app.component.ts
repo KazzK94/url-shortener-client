@@ -1,12 +1,11 @@
 import { Component } from '@angular/core'
 import { NavbarComponent } from './navbar/navbar.component'
-import { ShortenerFormComponent } from '@app/shortener-form/shortener-form.component'
+import { RouterOutlet } from '@angular/router'
 
 @Component({
 	selector: 'app-root',
-	imports: [NavbarComponent, ShortenerFormComponent],
-	templateUrl: './app.component.html',
-	styleUrl: './app.component.css'
+	imports: [NavbarComponent, RouterOutlet],
+	templateUrl: './app.component.html'
 })
 export class AppComponent {
 }
