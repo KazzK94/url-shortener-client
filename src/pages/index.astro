@@ -1,11 +1,52 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Logo from "../components/Logo.astro";
+import Navbar from "../components/Navbar.astro";
+import UrlShortenForm from "../components/UrlShortenForm.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	<Welcome />
+  <Navbar />
+
+  <main>
+    <Logo />
+
+    <h1>
+      <span class="text-primary">Shorten Your Links,</span>
+      <span>Track Their Traffic</span>
+    </h1>
+
+
+	<UrlShortenForm />
+  </main>
 </Layout>
+
+<style>
+  main {
+    display: flex;
+	flex-direction: column;
+	align-items: center;
+    height: 100%;
+	padding-top: 6rem;
+  }
+
+  h1 {
+	font-size: 2em;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+  }
+
+  .text-primary {
+    color: #04a;
+  }
+
+  @media (min-width: 768px) {
+	main {
+		padding-top: 8rem;
+	}
+	h1 {
+	  font-size: 2.5em;
+	}
+  }
+</style>

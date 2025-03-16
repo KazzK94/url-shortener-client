@@ -1,0 +1,47 @@
+---
+export const prerender = false; // Make it SSR instead of static
+
+const { shortKey } = Astro.params as { shortKey: string };
+const baseUrl = "https://url-shortener-yhpv.onrender.com";
+const fullUrl = `${baseUrl}/${shortKey}`;
+---
+
+<div class="container">
+  <h2>Redirecting...</h2>
+  <p id="targetUrl" data-targeturl={fullUrl}></p>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const targetUrl = document.getElementById("targetUrl");
+    if (!targetUrl) throw new Error("Target URL not found");
+    const fullUrl = targetUrl.dataset.targeturl;
+    if (fullUrl) {
+      window.location.href = fullUrl;
+    }
+  });
+</script>
+
+<style>
+  .container {
+    display: grid;
+    place-items: center;
+    height: 80dvh;
+    font-style: italic;
+    font-family: Poppins, sans-serif;
+  }
+  h2 {
+    font-size: 4em;
+    margin-bottom: 1rem;
+  }
+  a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+
+  @media (min-width: 768px) {
+    h2 {
+      font-size: 2em;
+    }
+  }
+</style>
