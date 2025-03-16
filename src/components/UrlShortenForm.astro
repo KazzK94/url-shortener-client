@@ -72,7 +72,7 @@ import Button from "./ui/Button.astro";
           throw new Error(data.error);
         } else {
           console.log(`${window.location.origin}/${data.shortKey}`);
-          return { shortUrl: `https://smol.reibal.dev/${data.shortKey}` };
+          return { shortUrl: `${window.location.origin}/${data.shortKey}` };
         }
       })
       .catch((error) => {
