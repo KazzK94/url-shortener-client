@@ -15,7 +15,10 @@ import Button from "./ui/Button.astro";
 <dialog id="success-modal">
   <h3>Success!!</h3>
   <p>Your new SMOL url is available now at:</p>
-  <p><a id="shortUrl" href="#shortUrlGoesHere">#shortUrlGoesHere</a></p>
+  <p><a id="short-url" href="#shortUrlGoesHere">#shortUrlGoesHere</a></p>
+
+  <img id="qr-code" src="" alt="QR Code for Generated URL" />
+
   <Button class="modal-close">Close</Button>
 </dialog>
 
@@ -41,11 +44,15 @@ import Button from "./ui/Button.astro";
       shortenUrl(url).then((result) => {
         console.log(result);
         const shortUrlLinkElement = document.getElementById(
-          "shortUrl"
+          "short-url"
         ) as HTMLAnchorElement | null;
         if (!dialog || !shortUrlLinkElement) return;
         shortUrlLinkElement.setAttribute("href", result.shortUrl);
         shortUrlLinkElement.textContent = result.shortUrl;
+		const qrCodeElement = document.getElementById("qr-code") as HTMLImageElement | null;
+		if (qrCodeElement) {
+			qrCodeElement.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${result.shortUrl}`;
+		}
         dialog.showModal();
       });
     });
@@ -140,10 +147,13 @@ import Button from "./ui/Button.astro";
       padding: 0 1em;
     }
 
-    & .modal-close {
+	& #qr-code {
+		margin: 1rem auto;
+	}
+
+    & button.modal-close {
       font-size: 1.2em;
       width: 100%;
-	  margin-top: 1rem;
     }
   }
 
