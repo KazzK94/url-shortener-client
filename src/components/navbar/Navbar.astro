@@ -5,6 +5,7 @@ import {
   UserButton,
   SignInButton,
 } from "@clerk/astro/components";
+import DashboardIconLink from "./DashboardIconLink.astro";
 ---
 
 <nav class="navbar">
@@ -16,21 +17,24 @@ import {
     <a href="/dashboard">Dashboard</a>
     <a href="/faq">F.A.Q.</a>
   </div>
-  <div class="user-info">
+  <div class="right">
     <SignedOut>
       <SignInButton mode="modal" class="login-button" />
     </SignedOut>
     <SignedIn>
-      <UserButton
-        appearance={{
-          elements: {
-            userButtonAvatarBox: {
-              height: "36px",
-              width: "36px",
-            },
-          },
-        }}
-      />
+        <DashboardIconLink />
+        <div class="user-info">
+          <UserButton
+            appearance={{
+              elements: {
+                userButtonAvatarBox: {
+                  height: "36px",
+                  width: "36px",
+                },
+              },
+            }}
+          />
+        </div>
     </SignedIn>
   </div>
 </nav>
@@ -47,8 +51,8 @@ import {
     box-shadow: 1px 1px 4px #6666;
     font-size: 1.25em;
     display: grid;
-	grid-template-columns: 1fr 1fr;
-	justify-content: space-between;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-between;
     align-items: center;
   }
 
@@ -68,9 +72,9 @@ import {
     color: #013;
     margin: 0;
 
-	& a {
-		margin: 0;
-	}
+    & a {
+      margin: 0;
+    }
   }
 
   .navbar .links {
@@ -91,18 +95,26 @@ import {
     }
   }
 
+  .navbar .right {
+    height: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    gap: 0.75em;
+  }
+
   .navbar .user-info {
     height: 100%;
     display: flex;
-	justify-content: right;
+    justify-content: right;
     align-items: center;
-	min-width: 36px;
+    min-width: 36px;
   }
 
   @media (min-width: 768px) {
     .navbar {
       padding: 0.5em 2em;
-	  grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
     }
     .navbar .links {
       display: flex;
