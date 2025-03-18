@@ -1,18 +1,18 @@
 import { useAuth } from '@clerk/astro/react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function ClerkTest() {
 
 	const { getToken } = useAuth()
+	const [user, setUser] = useState(null)
 
 	useEffect(() => {
 		const fetchUser = async () => {
 			const token = await getToken()
-			console.log({token})
 			const user = await fetch('https://url-shortener-yhpv.onrender.com/auth/me', {
 				headers: { Authorization: `Bearer ${token}` },
 			}).then((res) => res.json())
-			console.log({ user })
+			setUser(user)
 		}
 		fetchUser()
 	}, [])
