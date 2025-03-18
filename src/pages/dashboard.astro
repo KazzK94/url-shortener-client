@@ -1,34 +1,41 @@
 ---
 import { SignedIn, SignedOut } from "@clerk/astro/components";
+import ClerkTest from "../components/ClerkTest";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
   <SignedIn>
-	<div class="dashboard">
-		<h1>SMOL Dashboard</h1>
-		<p>Your dashboard would show up here!</p>
-	</div>
+    <div class="dashboard">
+      <h1>SMOL Dashboard</h1>
+      <p>Your dashboard would show up here!</p>
+    </div>
+    <div class="dashboard">
+      <h2>User Data</h2>
+	  <ClerkTest client:load  />
+    </div>
   </SignedIn>
   <SignedOut>
-    <p class="sign-in-required">You need to sign in before you access your dashboard</p>
+    <p class="sign-in-required">
+      You need to sign in before you access your dashboard
+    </p>
   </SignedOut>
 </Layout>
 
 <style>
-	.sign-in-required {
-		text-align: center;
-		font-size: 1.5em;
-		color: #d00;
-		background-color: #0001;
-		width: fit-content;
-		margin: auto;
-		padding: 4px 8px;
-		border-radius: 8px;
-	}
+  .sign-in-required {
+    text-align: center;
+    font-size: 1.5em;
+    color: #d00;
+    background-color: #0001;
+    width: fit-content;
+    margin: auto;
+    padding: 4px 8px;
+    border-radius: 8px;
+  }
 
-	.dashboard {
-		width: 100%;
-		text-align: center;
-	}
+  .dashboard {
+    width: 100%;
+    text-align: center;
+  }
 </style>
