@@ -18,6 +18,6 @@ export default function ClerkTest() {
 	}, [])
 
 	return <p>
-		{user}
+		{JSON.stringify(user, null, 2)}
 	</p>
 }
