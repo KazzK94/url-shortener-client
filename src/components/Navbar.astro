@@ -1,11 +1,38 @@
+---
+import {
+  SignedIn,
+  SignedOut,
+  UserButton,
+  SignInButton,
+} from "@clerk/astro/components";
+---
+
 <nav class="navbar">
-  <div class="brand">SMOL</div>
+  <div class="brand">
+    <a href="/">SMOL</a>
+  </div>
   <div class="links">
     <a href="/">Home</a>
-    <a href="/#features">Features (NIY)</a>
-    <a href="/faq">F.A.Q. (NIY)</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/faq">F.A.Q.</a>
   </div>
-  <div>User Stuff (NIY)</div>
+  <div class="user-info">
+    <SignedOut>
+      <SignInButton mode="modal" class="login-button" />
+    </SignedOut>
+    <SignedIn>
+      <UserButton
+        appearance={{
+          elements: {
+            userButtonAvatarBox: {
+              height: "36px",
+              width: "36px",
+            },
+          },
+        }}
+      />
+    </SignedIn>
+  </div>
 </nav>
 
 <style>
@@ -14,13 +41,14 @@
     top: 0;
     left: 0;
     right: 0;
-	z-index: 1000;
+    z-index: 1000;
     padding: 0.5rem 1.5rem;
     background-color: #fbfcff;
     box-shadow: 1px 1px 4px #6666;
     font-size: 1.25em;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-content: space-between;
     align-items: center;
   }
 
@@ -39,19 +67,46 @@
     font-size: 1.5em;
     color: #013;
     margin: 0;
+
+	& a {
+		margin: 0;
+	}
   }
 
   .navbar .links {
     display: none;
   }
 
+  .navbar .login-button {
+    background-color: #27c;
+    color: #fff;
+    font-size: 0.85em;
+    padding: 0.5em 1em;
+    border-radius: 0.25em;
+    border: none;
+    cursor: pointer;
+    transition: background-color 150ms ease-in-out;
+    &:hover {
+      background-color: #16a;
+    }
+  }
+
+  .navbar .user-info {
+    height: 100%;
+    display: flex;
+	justify-content: right;
+    align-items: center;
+	min-width: 36px;
+  }
+
   @media (min-width: 768px) {
     .navbar {
       padding: 0.5em 2em;
+	  grid-template-columns: 1fr 1fr 1fr;
     }
     .navbar .links {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
     }
   }
