@@ -18,6 +18,6 @@ export default function ClerkTest() {
 	}, [])
 
 	return <p>
-		Clerk Testing
+		{user}
 	</p>
 }
