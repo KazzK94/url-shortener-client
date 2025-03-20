@@ -1,19 +1,21 @@
-<a class="dashboard-icon-link" href="/dashboard">Dashboard</a>
+<a class="dashboard-link" href="/dashboard">Dashboard</a>
 
 <style>
-  .dashboard-icon-link {
+  .dashboard-link {
     color: black;
     background-color: #e0e9f288;
     border: 1px solid #0267;
-    padding: 0.3em 0.5em;
+	min-height: 40px;
+	display: flex;
+	align-items: center;
+    padding: 0em 0.6em;
     border-radius: 3px;
-    font-size: 0.8em;
-    text-align: center;
+    font-size: 0.85em;
     text-decoration: none;
   }
 
   @media (min-width: 768px) {
-    .dashboard-icon-link {
+    .dashboard-link {
       display: none;
     }
   }
