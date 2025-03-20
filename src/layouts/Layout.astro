@@ -28,6 +28,11 @@ import Navbar from "../components/navbar/Navbar.astro";
 </html>
 
 <style is:global>
+  /** CSS Variables */
+  :root {
+    --navbar-height: 4rem;
+  }
+
   html,
   body {
     margin: 0;
@@ -46,8 +51,19 @@ import Navbar from "../components/navbar/Navbar.astro";
     color: #333;
   }
 
-  h2, h3, h4, h5, h6, p, a {
-	margin: 0;
-	padding: 0;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a {
+    margin: 0;
+    padding: 0;
+  }
+
+  .hidden {
+    display: none;
   }
 </style>

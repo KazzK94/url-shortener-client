@@ -5,7 +5,7 @@ import {
   UserButton,
   SignInButton,
 } from "@clerk/astro/components";
-import DashboardIconLink from "./DashboardIconLink.astro";
+import DashboardLink from "./DashboardLink.astro";
 ---
 
 <nav class="navbar">
@@ -17,7 +17,6 @@ import DashboardIconLink from "./DashboardIconLink.astro";
     <SignedIn>
       <a href="/dashboard">Dashboard</a>
     </SignedIn>
-    <a href="/faq">F.A.Q.</a>
   </div>
   <div class="right">
     <SignedOut>
@@ -29,7 +28,7 @@ import DashboardIconLink from "./DashboardIconLink.astro";
       />
     </SignedOut>
     <SignedIn>
-      <DashboardIconLink />
+      <DashboardLink />
       <div class="user-info">
         <UserButton
           appearance={{
