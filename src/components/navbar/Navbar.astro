@@ -14,7 +14,9 @@ import DashboardIconLink from "./DashboardIconLink.astro";
   </div>
   <div class="links">
     <a href="/">Home</a>
-    <a href="/dashboard">Dashboard</a>
+    <SignedIn>
+      <a href="/dashboard">Dashboard</a>
+    </SignedIn>
     <a href="/faq">F.A.Q.</a>
   </div>
   <div class="right">
@@ -23,7 +25,7 @@ import DashboardIconLink from "./DashboardIconLink.astro";
         mode="modal"
         class="login-button"
         forceRedirectUrl="/dashboard"
-		signUpForceRedirectUrl="/"
+        signUpForceRedirectUrl="/"
       />
     </SignedOut>
     <SignedIn>
@@ -46,7 +48,7 @@ import DashboardIconLink from "./DashboardIconLink.astro";
 
 <style>
   .navbar {
-	height: 4rem;
+    height: 4rem;
     position: fixed;
     top: 0;
     left: 0;
