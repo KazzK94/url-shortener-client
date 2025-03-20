@@ -1,0 +1,50 @@
+.dashboard-container {
+	height: 100svh;
+	padding-top: 4rem;
+	position: relative;
+	overflow: hidden;
+
+	&>* {
+		height: 100%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		position: absolute;
+		transition: left 0.5s, right 0.5s;
+	}
+
+	& .urls-list {
+		background-color: #09f2;
+		padding: 0 1rem;
+		right: 0;
+	}
+
+	& .url-info {
+		background-color: #69b2;
+		padding: 0 1rem;
+		left: 100%;
+	}
+}
+
+.dashboard-container.open {
+	& .urls-list {
+		right: 100%;
+	}
+
+	& .url-info {
+		left: 0;
+	}
+}
+
+@media (min-width: 768px) {
+	.dashboard-container {
+		position: static;
+		display: grid;
+		grid-template-columns: 24rem 1fr;
+
+		&>* {
+			position: static;
+			transition: none;
+		}
+	}
+}

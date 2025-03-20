@@ -1,19 +1,12 @@
 ---
 import { SignedIn, SignedOut } from "@clerk/astro/components";
-import ClerkTest from "../components/ClerkTest";
 import Layout from "../layouts/Layout.astro";
+import DashboardComponent from '../components/dashboard/Dashboard';
 ---
 
 <Layout>
   <SignedIn>
-    <div class="dashboard">
-      <h1>SMOL Dashboard</h1>
-      <p>Your dashboard would show up here!</p>
-    </div>
-    <div class="dashboard">
-      <h2>User Data</h2>
-	  <ClerkTest client:load  />
-    </div>
+	  <DashboardComponent client:load  />
   </SignedIn>
   <SignedOut>
     <p class="sign-in-required">

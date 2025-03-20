@@ -8,7 +8,7 @@ import Navbar from "../components/navbar/Navbar.astro";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href="/favicon.png" />
-	<link rel="stylesheet" href="globals.css">
+    <link rel="stylesheet" href="globals.css" />
     <meta name="generator" content={Astro.generator} />
     <title>SMOL, the URL Shortener with Tracking for free!</title>
 
@@ -24,10 +24,7 @@ import Navbar from "../components/navbar/Navbar.astro";
   </head>
   <body>
     <Navbar />
-
-    <main>
-      <slot />
-    </main>
+    <slot />
   </body>
 </html>
 
@@ -48,16 +45,5 @@ import Navbar from "../components/navbar/Navbar.astro";
   body {
     background: linear-gradient(145deg, #e0f7facc, #dbeefbcc, #90caffbb);
     color: #333;
-  }
-</style>
-
-<style>
-  main {
-    padding-top: 6rem;
-  }
-  @media (min-width: 768px) {
-    main {
-      padding-top: 8rem;
-    }
   }
 </style>

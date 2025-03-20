@@ -5,7 +5,7 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <div class="container">
+  <main>
     <Logo />
 
     <h1>
@@ -14,11 +14,12 @@ import Layout from "../layouts/Layout.astro";
     </h1>
 
     <UrlShortenForm client:load />
-  </div>
+  </main>
 </Layout>
 
 <style>
-  .container {
+  main {
+    padding-top: 6rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,6 +45,9 @@ import Layout from "../layouts/Layout.astro";
   }
 
   @media (min-width: 768px) {
+    main {
+      padding-top: 8rem;
+    }
     h1 {
       font-size: 2.5em;
     }

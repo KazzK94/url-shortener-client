@@ -1,4 +1,4 @@
-import './styles.css'
+import './UrlShortenForm.css'
 
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 
