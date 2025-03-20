@@ -11,29 +11,37 @@
 		flex-direction: column;
 		position: absolute;
 		transition: left 0.5s, right 0.5s;
+		padding: 1rem;
 	}
 
-	& .urls-list {
-		background-color: #09f2;
-		padding: 0 1rem;
+	& .urls-list-container {
+		background-color: #09f1;
 		right: 0;
 	}
 
-	& .url-info {
-		background-color: #69b2;
-		padding: 0 1rem;
+	& .url-info-container {
+		background-color: #8bd3;
 		left: 100%;
+	}
+
+	.urls-list {
+		display: flex;
+		margin-top: 0.5rem;
 	}
 }
 
 .dashboard-container.open {
-	& .urls-list {
+	& .urls-list-container {
 		right: 100%;
 	}
 
-	& .url-info {
+	& .url-info-container {
 		left: 0;
 	}
+}
+
+.url {
+	word-break: break-all;
 }
 
 @media (min-width: 768px) {
