@@ -19,22 +19,27 @@ import DashboardIconLink from "./DashboardIconLink.astro";
   </div>
   <div class="right">
     <SignedOut>
-      <SignInButton mode="modal" class="login-button" />
+      <SignInButton
+        mode="modal"
+        class="login-button"
+        forceRedirectUrl="/dashboard"
+		signUpForceRedirectUrl="/"
+      />
     </SignedOut>
     <SignedIn>
-        <DashboardIconLink />
-        <div class="user-info">
-          <UserButton
-            appearance={{
-              elements: {
-                userButtonAvatarBox: {
-                  height: "36px",
-                  width: "36px",
-                },
+      <DashboardIconLink />
+      <div class="user-info">
+        <UserButton
+          appearance={{
+            elements: {
+              userButtonAvatarBox: {
+                height: "36px",
+                width: "36px",
               },
-            }}
-          />
-        </div>
+            },
+          }}
+        />
+      </div>
     </SignedIn>
   </div>
 </nav>
