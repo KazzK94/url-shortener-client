@@ -2,7 +2,7 @@
 export const prerender = false; // Make it SSR instead of static
 
 const { shortKey } = Astro.params as { shortKey: string };
-const baseUrl = "https://url-shortener-yhpv.onrender.com";
+const baseUrl = import.meta.env.PUBLIC_BACKEND_URL;
 const fullUrl = `${baseUrl}/${shortKey}`;
 ---
 
