@@ -1,6 +1,4 @@
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL
-
 /** 
  * Executes a fetch() requiring a mandatory token that should be obtained from the session. 
  * 

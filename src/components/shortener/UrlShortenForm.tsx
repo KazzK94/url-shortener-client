@@ -1,6 +1,6 @@
 import './UrlShortenForm.css'
 
-import { useEffect, useRef, useState, type FormEvent } from 'react'
+import { useRef, useState, type FormEvent } from 'react'
 
 const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL
 
@@ -9,11 +9,6 @@ export default function UrlShortenForm() {
 	const [url, setUrl] = useState('')
 	const [modalData, setModalData] = useState({ shortUrl: '' })
 	const modalRef = useRef<HTMLDialogElement>(null)
-
-	useEffect(() => {
-		// Wake up the service
-		fetch(BACKEND_URL)
-	}, [])
 
 	async function shortenUrl(url: string): Promise<{ shortUrl: string }> {
 		return await fetch(`${BACKEND_URL}/shorten`, {
