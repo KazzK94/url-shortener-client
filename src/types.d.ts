@@ -1,6 +1,11 @@
 
 export interface UrlData {
-	id: string
-	shortUrl: string
-	longUrl: string
+	_id: string
+	shortKey: string
+	targetUrl: string
+	visits: {
+		total: number
+	}
+	enabled: boolean
+	lastVisitAt: Date
 }

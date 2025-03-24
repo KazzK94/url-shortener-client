@@ -1,15 +1,21 @@
+import type { UrlData } from '../../../types'
+import { getRelativeTime } from '../../../utils/relativeTime'
 import './Detail.css'
 
 interface DetailPanelProps {
-	urlData: {
-		id: string
-		shortUrl: string
-		longUrl: string
-	}
+	urlData: UrlData
 	onBackClick: () => void
 }
 
 export default function DetailPanel({ urlData, onBackClick }: DetailPanelProps) {
+
+	const shortUrl = `${window.location.origin}/${urlData.shortKey}`
+
+	const statuses = {
+		enabled: 'Enabled',
+		disabled: 'Disabled'
+	}
+
 	return (
 		<div className="detail-panel">
 			<button className="back-button" onClick={onBackClick}>
@@ -32,38 +38,38 @@ export default function DetailPanel({ urlData, onBackClick }: DetailPanelProps) 
 
 			<div className="detail-content">
 				<div className="detail-header">
-					<h2 className="detail-title url">{urlData.shortUrl}</h2>
-					<p className="detail-subtitle url">{urlData.longUrl}</p>
+					<h2 className="detail-title url">{shortUrl}</h2>
+					<p className="detail-subtitle url">{urlData.targetUrl}</p>
 				</div>
 
 				<div className="stats-grid">
 					<div className="stat-card">
 						<h4 className="stat-title">Total Visits</h4>
-						<p className="stat-value">137</p>
+						<p className="stat-value">{urlData.visits.total}</p>
 					</div>
 
 					<div className="stat-card">
 						<h4 className="stat-title">Status</h4>
 						<div className="status-indicator">
 							<div className="status-dot enabled"></div>
-							<span>Enabled</span>
+							<span>{urlData.enabled ? 'Enabled' : 'Disabled'}</span>
 						</div>
 					</div>
 
 					<div className="stat-card">
 						<h4 className="stat-title">Last visit</h4>
-						<p className="stat-value">{(new Date()).toLocaleDateString()}</p>
+						<p className="stat-value">{getRelativeTime(urlData.lastVisitAt)}</p>
 					</div>
 				</div>
 
 				<div className="actions">
-					<button className="action-button rename-button">
+					<button onClick={() => alert('Not Implemented Yet')} className="action-button rename-button">
 						Change SMOL URL
 					</button>
-					<button className="action-button disable-button">
+					<button onClick={() => alert('Not Implemented Yet')} className="action-button disable-button">
 						Disable SMOL URL
 					</button>
-					<button className="action-button delete-button">
+					<button onClick={() => alert('Not Implemented Yet')} className="action-button delete-button">
 						Delete SMOL URL
 					</button>
 				</div>

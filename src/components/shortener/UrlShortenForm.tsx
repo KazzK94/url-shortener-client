@@ -1,3 +1,5 @@
+import { useAuth } from '@clerk/astro/react'
+import { fetchWithToken } from '../../utils/fetch'
 import './UrlShortenForm.css'
 
 import { useRef, useState, type FormEvent } from 'react'
@@ -10,29 +12,29 @@ export default function UrlShortenForm() {
 	const [modalData, setModalData] = useState({ shortUrl: '' })
 	const modalRef = useRef<HTMLDialogElement>(null)
 
+	const { getToken } = useAuth()
+
 	async function shortenUrl(url: string): Promise<{ shortUrl: string }> {
-		return await fetch(`${BACKEND_URL}/shorten`, {
+		const token = await getToken()
+		return await fetchWithToken(`${BACKEND_URL}/shorten`, {
+			token,
 			method: "POST",
 			body: JSON.stringify({ url: url }),
 			headers: {
 				"Content-Type": "application/json",
 			},
 		})
-			.then((response) => response.json())
 			.then((data) => {
-				console.log("Response:", data)
 				if (data.error) {
 					console.error(`Error: ${data.error}`)
 					throw new Error(data.error)
 				} else {
-					console.log(`${window.location.origin}/${data.shortKey}`)
 					return { shortUrl: `${window.location.origin}/${data.shortKey}` }
 				}
 			})
 	}
 
 	const handleSubmit = (event: FormEvent) => {
-		console.log('form submission triggered', event)
 		event.preventDefault()
 		if (!url) return
 		setModalData({ shortUrl: '' })
