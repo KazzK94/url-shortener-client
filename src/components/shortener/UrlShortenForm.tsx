@@ -68,7 +68,7 @@ export default function UrlShortenForm() {
 						<h3>Success!!</h3>
 						<p>Your new SMOL url is available now at:</p>
 						<p>
-							<a id="short-url" href={modalData.shortUrl}>{modalData.shortUrl}</a>
+							<a id="short-url" href={modalData.shortUrl} target='_blank'>{modalData.shortUrl}</a>
 						</p>
 
 						<img
