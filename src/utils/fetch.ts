@@ -1,4 +1,12 @@
 
+interface FetchWithTokenOptions {
+	token: string | null
+	method?: string
+	headers?: Record<string, string>
+	body?: string
+}
+
+
 /** 
  * Executes a fetch() requiring a mandatory token that should be obtained from the session. 
  * 
@@ -11,10 +19,15 @@
  * @param token The token to be used in the Authorization header.
  * @returns The JSON response from the fetch() call (no need to do response.json()).
  * */
-export async function fetchWithToken(query: string, { token }: { token: string | null }) {
+export async function fetchWithToken(query: string, { token, method, headers, body }: FetchWithTokenOptions) {
 	if (!token) throw new Error('Token is required to fetch data.')
 	const response = await fetch(query, {
-		headers: { Authorization: `Bearer ${token}` },
+		headers: {
+			Authorization: `Bearer ${token}`,
+			...headers
+		},
+		method: method || 'GET',
+		body
 	})
 	return response.json()
 }
