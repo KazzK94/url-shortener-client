@@ -8,13 +8,13 @@ import { useAuth } from '@clerk/astro/react'
 
 interface ChangeShortKeyModalProps {
 	urlData: UrlData
-	onUrlDataChange?: (urlData: UrlData) => void
+	onUrlDataChange: (urlData: UrlData) => void
 	onClose: () => void
 }
 
 const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL
 
-export function ChangeShortKeyModal({ urlData, onUrlDataChange, onClose }: ChangeShortKeyModalProps) {
+export default function ChangeShortKeyModal({ urlData, onUrlDataChange, onClose }: ChangeShortKeyModalProps) {
 
 	const { getToken } = useAuth()
 	const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -47,8 +47,7 @@ export function ChangeShortKeyModal({ urlData, onUrlDataChange, onClose }: Chang
 			if (!res.ok) {
 				throw new Error(data.error)
 			}
-			onUrlDataChange?.({ ...urlData, shortKey: newShortKey as string })
-			onClose()
+			onUrlDataChange({ ...urlData, shortKey: newShortKey as string })
 		} catch (error) {
 			console.error('Error:', error)
 			const errorString = String(error)

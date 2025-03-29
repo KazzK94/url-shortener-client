@@ -25,13 +25,19 @@ export default function Dashboard() {
 		setSelectedUrlData(null)
 	}
 
-	const handleUrlChanged = (changedUrlData: UrlData) => {
+	const handleUrlChange = (changedUrlData: UrlData) => {
 		setUrls(urls.map(urlData => {
 			return (urlData._id === changedUrlData._id)
 				? changedUrlData
 				: urlData
 		}))
 		setSelectedUrlData(changedUrlData)
+	}
+
+	const handleUrlDelete = (deletedUrlData: UrlData) => {
+		console.log('DELETING', JSON.stringify(deletedUrlData, null, 2))
+		setUrls(urls.filter(urlData => urlData._id !== deletedUrlData._id))
+		setSelectedUrlData(null)
 	}
 
 	useEffect(() => {
@@ -43,9 +49,6 @@ export default function Dashboard() {
 				.then(data => {
 					if (data) {
 						setUrls(data)
-						if (data.length > 0) {
-							setSelectedUrlData(data[0])
-						}
 					}
 					setIsLoading(false)
 				})
@@ -69,7 +72,8 @@ export default function Dashboard() {
 				selectedUrlData !== null && (
 					<Detail
 						urlData={selectedUrlData}
-						onUrlDataChanged={handleUrlChanged}
+						onUrlDataChange={handleUrlChange}
+						onUrlDataDelete={handleUrlDelete}
 						onBackClick={() => handleShowList()}
 					/>
 				)

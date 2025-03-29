@@ -33,11 +33,3 @@ button.close-modal {
 	background-color: #ddd;
 	color: #222;
 }
-
-.error-message {
-	color: red;
-	font-size: 0.9em;
-	padding-left: 8px;
-	padding-right: 8px;
-	margin-top: 0.5rem;
-}

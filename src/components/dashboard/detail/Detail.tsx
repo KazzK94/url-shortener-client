@@ -10,13 +10,14 @@ import type { ConfirmationModalType, UrlData } from '../../../types'
 
 interface DetailPanelProps {
 	urlData: UrlData
-	onUrlDataChanged: (urlData: UrlData) => void
+	onUrlDataChange: (urlData: UrlData) => void
+	onUrlDataDelete: (urlData: UrlData) => void
 	onBackClick: () => void
 }
 
 const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL
 
-export default function DetailPanel({ urlData, onUrlDataChanged, onBackClick }: DetailPanelProps) {
+export default function DetailPanel({ urlData, onUrlDataChange, onUrlDataDelete, onBackClick }: DetailPanelProps) {
 
 	const shortUrl = `${window.location.origin}/${urlData.shortKey}`
 	const [modalType, setModalType] = useState<ConfirmationModalType | null>(null)
@@ -33,7 +34,7 @@ export default function DetailPanel({ urlData, onUrlDataChanged, onBackClick }: 
 		})
 			.then(res => res.json())
 			.then(() => {
-				onUrlDataChanged({
+				onUrlDataChange({
 					...urlData,
 					enabled: !(urlData.enabled)
 				})
@@ -96,7 +97,7 @@ export default function DetailPanel({ urlData, onUrlDataChanged, onBackClick }: 
 					<button onClick={toggleEnabled} className={`action-button ${urlData.enabled ? 'disable-button' : 'enable-button'}`}>
 						{urlData.enabled ? 'Disable' : 'Enable'} SMOL URL
 					</button>
-					<button onClick={() => alert('Not Implemented Yet')} className="action-button delete-button">
+					<button onClick={() => setModalType('Delete')} className="action-button delete-button">
 						Delete SMOL URL
 					</button>
 				</div>
@@ -107,7 +108,8 @@ export default function DetailPanel({ urlData, onUrlDataChanged, onBackClick }: 
 					type={modalType}
 					urlData={urlData}
 					onClose={() => setModalType(null)}
-					onUrlDataChange={onUrlDataChanged}
+					onUrlDataChange={onUrlDataChange}
+					onUrlDataDelete={onUrlDataDelete}
 				/>
 			)}
 
