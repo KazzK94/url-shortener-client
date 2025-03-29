@@ -1,19 +1,39 @@
+import { useAuth } from '@clerk/astro/react'
 import type { UrlData } from '../../../types'
+import { fetchWithToken } from '../../../utils/fetch'
 import { getRelativeTime } from '../../../utils/relativeTime'
 import './Detail.css'
+import { useState } from 'react'
 
 interface DetailPanelProps {
 	urlData: UrlData
 	onBackClick: () => void
 }
 
-export default function DetailPanel({ urlData, onBackClick }: DetailPanelProps) {
+const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL
 
+export default function DetailPanel({ urlData: initialUrlData, onBackClick }: DetailPanelProps) {
+
+	const [urlData, setUrlData] = useState<UrlData>(initialUrlData)
 	const shortUrl = `${window.location.origin}/${urlData.shortKey}`
 
-	const statuses = {
-		enabled: 'Enabled',
-		disabled: 'Disabled'
+	const { getToken } = useAuth()
+
+	const handleEnableDisableClick = async () => {
+		const token = await getToken()
+		const endpoint = `${BACKEND_URL}/${urlData.shortKey}/${urlData.enabled ? 'disable' : 'enable'}`
+
+		try {
+			fetchWithToken(endpoint, { 
+				token,
+				method: 'PUT'
+			 })
+			.then(() => {
+				setUrlData((prev) => ({ ...prev, enabled: !prev.enabled }))
+			})
+		} catch (error) {
+			console.error('Could not change URL state. | ERROR:', error)
+		}
 	}
 
 	return (
@@ -51,7 +71,7 @@ export default function DetailPanel({ urlData, onBackClick }: DetailPanelProps) 
 					<div className="stat-card">
 						<h4 className="stat-title">Status</h4>
 						<div className="status-indicator">
-							<div className="status-dot enabled"></div>
+							<div className={`status-dot ${urlData.enabled ? 'enabled' : 'disabled'}`}></div>
 							<span>{urlData.enabled ? 'Enabled' : 'Disabled'}</span>
 						</div>
 					</div>
@@ -66,8 +86,8 @@ export default function DetailPanel({ urlData, onBackClick }: DetailPanelProps) 
 					<button onClick={() => alert('Not Implemented Yet')} className="action-button rename-button">
 						Change SMOL URL
 					</button>
-					<button onClick={() => alert('Not Implemented Yet')} className="action-button disable-button">
-						Disable SMOL URL
+					<button onClick={handleEnableDisableClick} className="action-button disable-button">
+						{urlData.enabled ? 'Disable' : 'Enable'} SMOL URL
 					</button>
 					<button onClick={() => alert('Not Implemented Yet')} className="action-button delete-button">
 						Delete SMOL URL
