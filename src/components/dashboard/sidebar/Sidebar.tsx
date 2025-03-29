@@ -16,14 +16,20 @@ const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL
 export default function Sidebar({ selectedUrlData, onSelectUrl }: SidebarProps) {
 
 	const [urls, setUrls] = useState<UrlData[]>([])
+	const [isLoading, setIsLoading] = useState(true)
 	const { getToken } = useAuth()
-	
+
 	useEffect(() => {
 		async function fetchUrls() {
 			const token = await getToken()
 			// Fetch URLs from the server
-			fetchWithToken(`${BACKEND_URL}/info`, { token })
-				.then(data => setUrls(data))
+			fetchWithToken(`${BACKEND_URL}/data`, { token })
+				.then(data => {
+					if (data) {
+						setUrls(data)
+					}
+					setIsLoading(false)
+				})
 		}
 		fetchUrls()
 
@@ -32,6 +38,13 @@ export default function Sidebar({ selectedUrlData, onSelectUrl }: SidebarProps) 
 	return <div className='sidebar'>
 		<h1 className="sidebar-title">Your URLs</h1>
 		<div className="sidebar-items">
+			{
+				isLoading === false && urls.length === 0 && (
+					<div className="no-urls-message">
+						<p>No URLs found.</p>
+					</div>
+				)
+			}
 			{
 				urls.map((urlData) => (
 					<SidebarItem
@@ -43,6 +56,21 @@ export default function Sidebar({ selectedUrlData, onSelectUrl }: SidebarProps) 
 					/>
 				))
 			}
+			{
+				isLoading === false && (
+					<div className="add-url-item">
+						<a href="/">Add a new URL</a>
+					</div>
+				)
+			}
 		</div>
+
+		{
+			isLoading && (
+				<dialog open>
+					<p>Loading...</p>
+				</dialog>
+			)
+		}
 	</div>
 }
