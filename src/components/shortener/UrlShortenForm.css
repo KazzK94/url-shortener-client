@@ -25,10 +25,10 @@ button {
 }
 
 input {
-	height: 100%;
 	width: 100%;
+	height: 2.25em;
 	padding: 0.4em 0.5em;
-	font-size: 1.25em;
+	font-size: 1.1em;
 	border: 2px solid #ccc;
 	border-radius: 4px;
 
@@ -39,9 +39,9 @@ input {
 
 .shorten-submit-button {
 	width: 100%;
-	height: 100%;
-	padding: 0.5rem;
-	font-size: 1.25rem;
+	height: 2.25em;
+	padding: 0.4em 0.5em;
+	font-size: 1.1rem;
 
 	&:hover {
 		opacity: 0.95;
