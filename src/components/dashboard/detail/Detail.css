@@ -144,6 +144,10 @@
 	background-color: #2b62f2;
 }
 
+.enable-button {
+	background-color: #0bb55e;
+}
+
 .disable-button {
 	background-color: #e57e2b;
 }

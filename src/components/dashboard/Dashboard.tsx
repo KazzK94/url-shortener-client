@@ -31,6 +31,7 @@ export default function Dashboard() {
 				selectedUrlData !== null && (
 					<Detail
 						urlData={selectedUrlData}
+						setUrlData={setSelectedUrlData}
 						onBackClick={() => handleShowList()}
 					/>
 				)

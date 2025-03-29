@@ -7,5 +7,5 @@ export interface UrlData {
 		total: number
 	}
 	enabled: boolean
-	lastVisitAt: Date
+	lastVisitAt: Date | null
 }
