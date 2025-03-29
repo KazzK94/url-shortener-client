@@ -37,7 +37,7 @@
 }
 
 .detail-title {
-	font-size: 1rem;
+	font-size: 1.05rem;
 	font-weight: 600;
 	margin-bottom: 0.5rem;
 }
@@ -53,6 +53,7 @@
 	.detail-title {
 		font-size: 1.25rem;
 	}
+
 	.detail-subtitle {
 		font-size: 0.875rem;
 	}
@@ -62,6 +63,7 @@
 	.detail-title {
 		font-size: 1.5rem;
 	}
+
 	.detail-subtitle {
 		font-size: 1rem;
 	}
@@ -116,13 +118,14 @@
 	color: #64748b;
 }
 
-.stat-value, .status-indicator {
+.stat-value,
+.status-indicator {
 	padding-left: 4px;
 }
 
 .actions {
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: column;
 	gap: 0.5rem;
 }
 
@@ -154,4 +157,11 @@
 
 .delete-button {
 	background-color: #e11d48;
+}
+
+@media (min-width: 768px) {
+	.actions {
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
 }
