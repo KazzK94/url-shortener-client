@@ -1,0 +1,43 @@
+
+.modal-form {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	margin-top: 0.25rem;
+
+	& > label {
+		margin-bottom: 0.2rem;
+		font-weight: bold;
+		font-size: 0.85em;
+	}
+
+	& > input {
+		padding: 0.5rem;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+		font-size: 1em;
+	}
+}
+
+button[type="submit"] {
+	background-color: #007bff;
+	color: white;
+}
+
+button.close-modal {
+	background-color: #ddd;
+	color: #222;
+}
+
+.error-message {
+	color: red;
+	font-size: 0.9em;
+	padding-left: 8px;
+	padding-right: 8px;
+	margin-top: 0.5rem;
+}

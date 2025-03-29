@@ -1,20 +1,25 @@
-import { useAuth } from '@clerk/astro/react'
-import type { UrlData } from '../../../types'
+import './Detail.css'
+
+import ConfirmationModal from './modal/ConfirmationModal'
 import { fetchWithToken } from '../../../utils/fetch'
 import { getRelativeTime } from '../../../utils/relativeTime'
-import './Detail.css'
+import { useState } from 'react'
+import { useAuth } from '@clerk/astro/react'
+
+import type { ConfirmationModalType, UrlData } from '../../../types'
 
 interface DetailPanelProps {
 	urlData: UrlData
-	setUrlData: React.Dispatch<React.SetStateAction<UrlData | null>>
+	onUrlDataChanged: (urlData: UrlData) => void
 	onBackClick: () => void
 }
 
 const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL
 
-export default function DetailPanel({ urlData, setUrlData, onBackClick }: DetailPanelProps) {
+export default function DetailPanel({ urlData, onUrlDataChanged, onBackClick }: DetailPanelProps) {
 
 	const shortUrl = `${window.location.origin}/${urlData.shortKey}`
+	const [modalType, setModalType] = useState<ConfirmationModalType | null>(null)
 
 	const { getToken } = useAuth()
 
@@ -22,20 +27,20 @@ export default function DetailPanel({ urlData, setUrlData, onBackClick }: Detail
 		const token = await getToken()
 		const endpoint = `${BACKEND_URL}/${urlData.shortKey}/${urlData.enabled ? 'disable' : 'enable'}`
 
-		try {
-			fetchWithToken(endpoint, {
-				token,
-				method: 'PUT'
-			})
-				.then(() => {
-					setUrlData((prev) => {
-						if (prev === null) return null
-						return { ...prev, enabled: !prev.enabled }
-					})
+		fetchWithToken(endpoint, {
+			token,
+			method: 'PUT'
+		})
+			.then(res => res.json())
+			.then(() => {
+				onUrlDataChanged({
+					...urlData,
+					enabled: !(urlData.enabled)
 				})
-		} catch (error) {
-			console.error('Could not change URL state. | ERROR:', error)
-		}
+			})
+			.catch((error) => {
+				console.error('Error toggling URL enabled status:', error)
+			})
 	}
 
 	return (
@@ -85,7 +90,7 @@ export default function DetailPanel({ urlData, setUrlData, onBackClick }: Detail
 				</div>
 
 				<div className="actions">
-					<button onClick={() => alert('Not Implemented Yet')} className="action-button rename-button">
+					<button onClick={() => setModalType('ShortKeyChange')} className="action-button rename-button">
 						Change SMOL URL
 					</button>
 					<button onClick={toggleEnabled} className={`action-button ${urlData.enabled ? 'disable-button' : 'enable-button'}`}>
@@ -96,6 +101,16 @@ export default function DetailPanel({ urlData, setUrlData, onBackClick }: Detail
 					</button>
 				</div>
 			</div>
+
+			{modalType !== null && (
+				<ConfirmationModal
+					type={modalType}
+					urlData={urlData}
+					onClose={() => setModalType(null)}
+					onUrlDataChange={onUrlDataChanged}
+				/>
+			)}
+
 		</div>
 	)
 }

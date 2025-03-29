@@ -24,6 +24,7 @@ export default function UrlShortenForm() {
 				"Content-Type": "application/json",
 			},
 		})
+			.then(res => res.json())
 			.then((data) => {
 				if (data.error) {
 					console.error(`Error: ${data.error}`)

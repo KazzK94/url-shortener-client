@@ -1,40 +1,16 @@
 
-import { useEffect, useState } from 'react'
 import type { UrlData } from '../../../types'
 import './Sidebar.css'
 import SidebarItem from './SidebarItem'
-import { fetchWithToken } from '../../../utils/fetch'
-import { useAuth } from '@clerk/astro/react'
 
 interface SidebarProps {
+	urls: UrlData[]
 	selectedUrlData: UrlData | null
+	isLoading: boolean
 	onSelectUrl: (urlData: UrlData) => void
 }
 
-const BACKEND_URL = import.meta.env.PUBLIC_BACKEND_URL
-
-export default function Sidebar({ selectedUrlData, onSelectUrl }: SidebarProps) {
-
-	const [urls, setUrls] = useState<UrlData[]>([])
-	const [isLoading, setIsLoading] = useState(true)
-	const { getToken } = useAuth()
-
-	useEffect(() => {
-		async function fetchUrls() {
-			const token = await getToken()
-			// Fetch URLs from the server
-			fetchWithToken(`${BACKEND_URL}/data`, { token })
-				.then(data => {
-					if (data) {
-						setUrls(data)
-					}
-					setIsLoading(false)
-				})
-		}
-		fetchUrls()
-
-	}, [])
-
+export default function Sidebar({ urls, selectedUrlData, isLoading, onSelectUrl }: SidebarProps) {
 	return <div className='sidebar'>
 		<h1 className="sidebar-title">Your URLs</h1>
 		<div className="sidebar-items">
@@ -67,9 +43,9 @@ export default function Sidebar({ selectedUrlData, onSelectUrl }: SidebarProps) 
 
 		{
 			isLoading && (
-				<dialog open>
+				<div>
 					<p>Loading...</p>
-				</dialog>
+				</div>
 			)
 		}
 	</div>

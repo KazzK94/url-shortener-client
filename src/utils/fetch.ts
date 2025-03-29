@@ -17,7 +17,7 @@ interface FetchWithTokenOptions {
  * 
  * @param query The URL to fetch data from.
  * @param token The token to be used in the Authorization header.
- * @returns The JSON response from the fetch() call (no need to do response.json()).
+ * @returns The response from the fetch() call.
  * */
 export async function fetchWithToken(query: string, { token, method, headers, body }: FetchWithTokenOptions) {
 	if (!token) throw new Error('Token is required to fetch data.')
@@ -29,5 +29,5 @@ export async function fetchWithToken(query: string, { token, method, headers, bo
 		method: method || 'GET',
 		body
 	})
-	return response.json()
+	return response
 }

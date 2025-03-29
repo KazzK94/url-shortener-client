@@ -9,3 +9,5 @@ export interface UrlData {
 	enabled: boolean
 	lastVisitAt: Date | null
 }
+
+export type ConfirmationModalType = 'ShortKeyChange' | 'Delete' | 'Enable' | 'Disable'
